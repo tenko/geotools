@@ -1,0 +1,1115 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Geometry Tools &mdash; geotools  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="geotools  documentation" href="index.html" />
+    <link rel="prev" title="geotools documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="geotools documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">geotools  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="geometry-tools">
+<h1>Geometry Tools<a class="headerlink" href="#geometry-tools" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="geotools.cross">
+<tt class="descclassname">geotools.</tt><tt class="descname">cross</tt><big>(</big><em>Vector a</em>, <em>Vector b</em><big>)</big> &rarr; Vector<a class="headerlink" href="#geotools.cross" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cross product</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geotools.distance">
+<tt class="descclassname">geotools.</tt><tt class="descname">distance</tt><big>(</big><em>Point u</em>, <em>Point v</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute distance between 2 points.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geotools.dot">
+<tt class="descclassname">geotools.</tt><tt class="descname">dot</tt><big>(</big><em>Vector a</em>, <em>Vector b</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dot product</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geotools.isParallell">
+<tt class="descclassname">geotools.</tt><tt class="descname">isParallell</tt><big>(</big><em>Vector v1</em>, <em>Vector v2</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.isParallell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if parallell, -1 if anti-parallell and 0 if not parallell.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geotools.isPerpendicular">
+<tt class="descclassname">geotools.</tt><tt class="descname">isPerpendicular</tt><big>(</big><em>Vector v1</em>, <em>Vector v2</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.isPerpendicular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if perpendicular and 0 if not perpendicular.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geotools.perpendicular">
+<tt class="descclassname">geotools.</tt><tt class="descname">perpendicular</tt><big>(</big><em>Vector v</em><big>)</big> &rarr; Vector<a class="headerlink" href="#geotools.perpendicular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a vector perpendicular to v</p>
+</dd></dl>
+
+<div class="section" id="aabbox">
+<h2>AABBox<a class="headerlink" href="#aabbox" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.AABBox">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">AABBox</tt><a class="headerlink" href="#geotools.AABBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>AABBox(min=(-0.5, -0.5, -0.5), max=(0.5, 0.5, 0.5))</p>
+<p>Class representing an Axis Aligned Bounding Box</p>
+<dl class="staticmethod">
+<dt id="geotools.AABBox.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>S</em>, <em>...</em><big>)</big> &rarr; a new object with type S, a subtype of T<a class="headerlink" href="#geotools.AABBox.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.AABBox.addPoint">
+<tt class="descname">addPoint</tt><big>(</big><em>self</em>, <em>pnt</em><big>)</big><a class="headerlink" href="#geotools.AABBox.addPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust bounds to include point.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.AABBox.addPoints">
+<tt class="descname">addPoints</tt><big>(</big><em>self</em>, <em>pnts</em><big>)</big><a class="headerlink" href="#geotools.AABBox.addPoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust bounds to include point.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.AABBox.invalidate">
+<tt class="descname">invalidate</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#geotools.AABBox.invalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set bounding box in invalid state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.AABBox.isPointIn">
+<tt class="descname">isPointIn</tt><big>(</big><em>self</em>, <em>pnt</em>, <em>int strictlyIn=False</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.AABBox.isPointIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if point is inside box.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.AABBox.isValid">
+<tt class="descname">isValid</tt><big>(</big><em>self</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.AABBox.isValid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check validity</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="geotools.AABBox.union">
+<em class="property">static </em><tt class="descname">union</tt><big>(</big><em>type cls</em>, <em>AABBox a</em>, <em>AABBox b</em><big>)</big><a class="headerlink" href="#geotools.AABBox.union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new bounding box which is a union of
+the arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__eq__">
+<tt class="descname">__eq__</tt><a class="headerlink" href="#geotools.AABBox.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__eq__(y) &lt;==&gt; x==y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__ge__">
+<tt class="descname">__ge__</tt><a class="headerlink" href="#geotools.AABBox.__ge__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__ge__(y) &lt;==&gt; x&gt;=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__gt__">
+<tt class="descname">__gt__</tt><a class="headerlink" href="#geotools.AABBox.__gt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__gt__(y) &lt;==&gt; x&gt;y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__init__">
+<tt class="descname">__init__</tt><a class="headerlink" href="#geotools.AABBox.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__le__">
+<tt class="descname">__le__</tt><a class="headerlink" href="#geotools.AABBox.__le__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__le__(y) &lt;==&gt; x&lt;=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__lt__">
+<tt class="descname">__lt__</tt><a class="headerlink" href="#geotools.AABBox.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__lt__(y) &lt;==&gt; x&lt;y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__ne__">
+<tt class="descname">__ne__</tt><a class="headerlink" href="#geotools.AABBox.__ne__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__ne__(y) &lt;==&gt; x!=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__repr__">
+<tt class="descname">__repr__</tt><a class="headerlink" href="#geotools.AABBox.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a box.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.__str__">
+<tt class="descname">__str__</tt><a class="headerlink" href="#geotools.AABBox.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a box.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.center">
+<tt class="descname">center</tt><a class="headerlink" href="#geotools.AABBox.center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate center of box</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.diagonal">
+<tt class="descname">diagonal</tt><a class="headerlink" href="#geotools.AABBox.diagonal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return diagonal as a vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.max">
+<tt class="descname">max</tt><a class="headerlink" href="#geotools.AABBox.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>max: geotools.Point</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.min">
+<tt class="descname">min</tt><a class="headerlink" href="#geotools.AABBox.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>min: geotools.Point</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.radius">
+<tt class="descname">radius</tt><a class="headerlink" href="#geotools.AABBox.radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return radius of the sphere enclosing the box</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.AABBox.volume">
+<tt class="descname">volume</tt><a class="headerlink" href="#geotools.AABBox.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate volume of box</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="plane">
+<h2>Plane<a class="headerlink" href="#plane" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.Plane">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">Plane</tt><a class="headerlink" href="#geotools.Plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plane(origin=&lt;???&gt;, xaxis=&lt;???&gt;, yaxis=&lt;???&gt;)</p>
+<p>Class representing a mathematical infinite plane.</p>
+<dl class="method">
+<dt id="geotools.Plane.ValueAt">
+<tt class="descname">ValueAt</tt><big>(</big><em>self</em>, <em>pnt</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Plane.ValueAt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Plane.closestPoint">
+<tt class="descname">closestPoint</tt><big>(</big><em>self</em>, <em>pnt</em><big>)</big> &rarr; Point<a class="headerlink" href="#geotools.Plane.closestPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return closest point on plane</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Plane.distanceTo">
+<tt class="descname">distanceTo</tt><big>(</big><em>self</em>, <em>pnt</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Plane.distanceTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signed distance from plane to pnt</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Plane.flip">
+<tt class="descname">flip</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#geotools.Plane.flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flip direction of normal</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="geotools.Plane.fromFrame">
+<em class="property">static </em><tt class="descname">fromFrame</tt><big>(</big><em>cls</em>, <em>origin</em>, <em>xaxis</em>, <em>yaxis</em><big>)</big><a class="headerlink" href="#geotools.Plane.fromFrame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="geotools.Plane.fromNormal">
+<em class="property">static </em><tt class="descname">fromNormal</tt><big>(</big><em>cls</em>, <em>origin</em>, <em>normal</em><big>)</big><a class="headerlink" href="#geotools.Plane.fromNormal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Plane.intersectLine">
+<tt class="descname">intersectLine</tt><big>(</big><em>self</em>, <em>start</em>, <em>end</em><big>)</big><a class="headerlink" href="#geotools.Plane.intersectLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find intersection with line defined
+by the points start and end</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Plane.transform">
+<tt class="descname">transform</tt><big>(</big><em>self</em>, <em>Transform trans</em><big>)</big><a class="headerlink" href="#geotools.Plane.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform plane</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.a">
+<tt class="descname">a</tt><a class="headerlink" href="#geotools.Plane.a" title="Permalink to this definition">¶</a></dt>
+<dd><p>a: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.b">
+<tt class="descname">b</tt><a class="headerlink" href="#geotools.Plane.b" title="Permalink to this definition">¶</a></dt>
+<dd><p>b: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.c">
+<tt class="descname">c</tt><a class="headerlink" href="#geotools.Plane.c" title="Permalink to this definition">¶</a></dt>
+<dd><p>c: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.d">
+<tt class="descname">d</tt><a class="headerlink" href="#geotools.Plane.d" title="Permalink to this definition">¶</a></dt>
+<dd><p>d: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.origin">
+<tt class="descname">origin</tt><a class="headerlink" href="#geotools.Plane.origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>origin: geotools.Point</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.xaxis">
+<tt class="descname">xaxis</tt><a class="headerlink" href="#geotools.Plane.xaxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>xaxis: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.yaxis">
+<tt class="descname">yaxis</tt><a class="headerlink" href="#geotools.Plane.yaxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>yaxis: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Plane.zaxis">
+<tt class="descname">zaxis</tt><a class="headerlink" href="#geotools.Plane.zaxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>zaxis: geotools.Vector</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="point">
+<h2>Point<a class="headerlink" href="#point" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.Point">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">Point</tt><a class="headerlink" href="#geotools.Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point(<a href="#id1"><span class="problematic" id="id2">*</span></a>args)</p>
+<p>Class representing a 3D point in space</p>
+<dl class="staticmethod">
+<dt id="geotools.Point.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>S</em>, <em>...</em><big>)</big> &rarr; a new object with type S, a subtype of T<a class="headerlink" href="#geotools.Point.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Point.distanceTo">
+<tt class="descname">distanceTo</tt><big>(</big><em>self</em>, <em>Point arg</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Point.distanceTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute distance between 2 points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Point.isZero">
+<tt class="descname">isZero</tt><big>(</big><em>self</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.Point.isZero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if arg is all zeros.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Point.maximumCoordinate">
+<tt class="descname">maximumCoordinate</tt><big>(</big><em>self</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Point.maximumCoordinate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Point.maximumCoordinateIndex">
+<tt class="descname">maximumCoordinateIndex</tt><big>(</big><em>self</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.Point.maximumCoordinateIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Point.set">
+<tt class="descname">set</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Point.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set one or more coordinates.
+accept both multiple argument and
+sequence like arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__abs__">
+<tt class="descname">__abs__</tt><a class="headerlink" href="#geotools.Point.__abs__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return absolute value of point: abs(v)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__add__">
+<tt class="descname">__add__</tt><a class="headerlink" href="#geotools.Point.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point addition
+The arguments must be of same length</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__div__">
+<tt class="descname">__div__</tt><a class="headerlink" href="#geotools.Point.__div__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point division by scalar.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__eq__">
+<tt class="descname">__eq__</tt><a class="headerlink" href="#geotools.Point.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__eq__(y) &lt;==&gt; x==y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__ge__">
+<tt class="descname">__ge__</tt><a class="headerlink" href="#geotools.Point.__ge__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__ge__(y) &lt;==&gt; x&gt;=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__getitem__">
+<tt class="descname">__getitem__</tt><a class="headerlink" href="#geotools.Point.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override the list __getitem__ function to
+return a new point rather than a list.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__gt__">
+<tt class="descname">__gt__</tt><a class="headerlink" href="#geotools.Point.__gt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__gt__(y) &lt;==&gt; x&gt;y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__iadd__">
+<tt class="descname">__iadd__</tt><a class="headerlink" href="#geotools.Point.__iadd__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Point addition ( p1 += p2)
+The arguments must be of same length</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__idiv__">
+<tt class="descname">__idiv__</tt><a class="headerlink" href="#geotools.Point.__idiv__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Point division by scalar. (p1 /= 2.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__imul__">
+<tt class="descname">__imul__</tt><a class="headerlink" href="#geotools.Point.__imul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Point multiplication (v1 <a href="#id3"><span class="problematic" id="id4">*</span></a>= s1)
+We accept multiplication by scalar and
+a 4x4 transformation matrix.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__init__">
+<tt class="descname">__init__</tt><a class="headerlink" href="#geotools.Point.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__isub__">
+<tt class="descname">__isub__</tt><a class="headerlink" href="#geotools.Point.__isub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Point subtraction ( p1 -= p2)
+The arguments must be of same length</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__le__">
+<tt class="descname">__le__</tt><a class="headerlink" href="#geotools.Point.__le__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__le__(y) &lt;==&gt; x&lt;=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__len__">
+<tt class="descname">__len__</tt><a class="headerlink" href="#geotools.Point.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of sequence</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__lt__">
+<tt class="descname">__lt__</tt><a class="headerlink" href="#geotools.Point.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__lt__(y) &lt;==&gt; x&lt;y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__mul__">
+<tt class="descname">__mul__</tt><a class="headerlink" href="#geotools.Point.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point multiplication
+We accept multiplication by a scalar,
+and a 4x4 transformation matrix.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__ne__">
+<tt class="descname">__ne__</tt><a class="headerlink" href="#geotools.Point.__ne__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__ne__(y) &lt;==&gt; x!=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__neg__">
+<tt class="descname">__neg__</tt><a class="headerlink" href="#geotools.Point.__neg__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return negated value of point: -v</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__pos__">
+<tt class="descname">__pos__</tt><a class="headerlink" href="#geotools.Point.__pos__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return positive value of point: +v</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__radd__">
+<tt class="descname">__radd__</tt><a class="headerlink" href="#geotools.Point.__radd__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__radd__(y) &lt;==&gt; y+x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__rdiv__">
+<tt class="descname">__rdiv__</tt><a class="headerlink" href="#geotools.Point.__rdiv__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rdiv__(y) &lt;==&gt; y/x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__repr__">
+<tt class="descname">__repr__</tt><a class="headerlink" href="#geotools.Point.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__rmul__">
+<tt class="descname">__rmul__</tt><a class="headerlink" href="#geotools.Point.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rmul__(y) &lt;==&gt; y*x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__rsub__">
+<tt class="descname">__rsub__</tt><a class="headerlink" href="#geotools.Point.__rsub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rsub__(y) &lt;==&gt; y-x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__str__">
+<tt class="descname">__str__</tt><a class="headerlink" href="#geotools.Point.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.__sub__">
+<tt class="descname">__sub__</tt><a class="headerlink" href="#geotools.Point.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point subtraction
+The arguments must be of same length</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.x">
+<tt class="descname">x</tt><a class="headerlink" href="#geotools.Point.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.y">
+<tt class="descname">y</tt><a class="headerlink" href="#geotools.Point.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Point.z">
+<tt class="descname">z</tt><a class="headerlink" href="#geotools.Point.z" title="Permalink to this definition">¶</a></dt>
+<dd><p>z: &#8216;double&#8217;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="quaternion">
+<h2>Quaternion<a class="headerlink" href="#quaternion" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.Quaternion">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">Quaternion</tt><a class="headerlink" href="#geotools.Quaternion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quaternion(<a href="#id5"><span class="problematic" id="id6">*</span></a>args)</p>
+<p>Class representing a quaternion usefull for rotation
+transformations.</p>
+<dl class="staticmethod">
+<dt id="geotools.Quaternion.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>S</em>, <em>...</em><big>)</big> &rarr; a new object with type S, a subtype of T<a class="headerlink" href="#geotools.Quaternion.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Quaternion.conj">
+<tt class="descname">conj</tt><big>(</big><em>self</em><big>)</big> &rarr; Quaternion<a class="headerlink" href="#geotools.Quaternion.conj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="geotools.Quaternion.fromAngleAxis">
+<em class="property">static </em><tt class="descname">fromAngleAxis</tt><big>(</big><em>type cls</em>, <em>double angle</em>, <em>Vector axis</em><big>)</big><a class="headerlink" href="#geotools.Quaternion.fromAngleAxis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Quaternion.imap">
+<tt class="descname">imap</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Quaternion.imap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse rotation.
+We accept point as multiple argument, sequence like arguments and
+sequence of multiple points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Quaternion.map">
+<tt class="descname">map</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Quaternion.map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotation.
+We accept point as multiple argument, sequence like arguments and
+sequence of multiple points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Quaternion.set">
+<tt class="descname">set</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Quaternion.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set one or more coordinates.
+accept both multiple argument and
+sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Quaternion.unit">
+<tt class="descname">unit</tt><big>(</big><em>self</em><big>)</big> &rarr; Quaternion<a class="headerlink" href="#geotools.Quaternion.unit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__getitem__">
+<tt class="descname">__getitem__</tt><a class="headerlink" href="#geotools.Quaternion.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__getitem__(y) &lt;==&gt; x[y]</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__imul__">
+<tt class="descname">__imul__</tt><a class="headerlink" href="#geotools.Quaternion.__imul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__imul__(y) &lt;==&gt; x*=y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__init__">
+<tt class="descname">__init__</tt><a class="headerlink" href="#geotools.Quaternion.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__len__">
+<tt class="descname">__len__</tt><a class="headerlink" href="#geotools.Quaternion.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of sequence</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__mul__">
+<tt class="descname">__mul__</tt><a class="headerlink" href="#geotools.Quaternion.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__mul__(y) &lt;==&gt; x*y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__repr__">
+<tt class="descname">__repr__</tt><a class="headerlink" href="#geotools.Quaternion.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a Quaternion.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__rmul__">
+<tt class="descname">__rmul__</tt><a class="headerlink" href="#geotools.Quaternion.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rmul__(y) &lt;==&gt; y*x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.__str__">
+<tt class="descname">__str__</tt><a class="headerlink" href="#geotools.Quaternion.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a Quaternion.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.length">
+<tt class="descname">length</tt><a class="headerlink" href="#geotools.Quaternion.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate lenght of Quaternion</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.lengthSquared">
+<tt class="descname">lengthSquared</tt><a class="headerlink" href="#geotools.Quaternion.lengthSquared" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate squared lenght of Quaternion</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.transform">
+<tt class="descname">transform</tt><a class="headerlink" href="#geotools.Quaternion.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>create the coresponding transformation matrix</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.w">
+<tt class="descname">w</tt><a class="headerlink" href="#geotools.Quaternion.w" title="Permalink to this definition">¶</a></dt>
+<dd><p>w: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.x">
+<tt class="descname">x</tt><a class="headerlink" href="#geotools.Quaternion.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.y">
+<tt class="descname">y</tt><a class="headerlink" href="#geotools.Quaternion.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Quaternion.z">
+<tt class="descname">z</tt><a class="headerlink" href="#geotools.Quaternion.z" title="Permalink to this definition">¶</a></dt>
+<dd><p>z: &#8216;double&#8217;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="transform">
+<h2>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.Transform">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">Transform</tt><a class="headerlink" href="#geotools.Transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform(<a href="#id7"><span class="problematic" id="id8">*</span></a>args)</p>
+<p>Matrix of 4x4 size. Typical 3D
+transformation matrix.</p>
+<dl class="staticmethod">
+<dt id="geotools.Transform.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>S</em>, <em>...</em><big>)</big> &rarr; a new object with type S, a subtype of T<a class="headerlink" href="#geotools.Transform.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.cameraToClip">
+<tt class="descname">cameraToClip</tt><big>(</big><em>self</em>, <em>Camera cam</em><big>)</big><a class="headerlink" href="#geotools.Transform.cameraToClip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.cameraToWorld">
+<tt class="descname">cameraToWorld</tt><big>(</big><em>self</em>, <em>Camera cam</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.cameraToWorld" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.clipToCamera">
+<tt class="descname">clipToCamera</tt><big>(</big><em>self</em>, <em>Camera cam</em><big>)</big><a class="headerlink" href="#geotools.Transform.clipToCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.det">
+<tt class="descname">det</tt><big>(</big><em>self</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Transform.det" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determinand of matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.identity">
+<tt class="descname">identity</tt><big>(</big><em>self</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>set identity matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.invert">
+<tt class="descname">invert</tt><big>(</big><em>self</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.map">
+<tt class="descname">map</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Transform.map" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept point as multiple argument, sequence like arguments and
+sequence of multiple points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.rotateAxisCenter">
+<tt class="descname">rotateAxisCenter</tt><big>(</big><em>self</em>, <em>double angle</em>, <em>_axis</em>, <em>_center=(0.0</em>, <em>0.0</em>, <em>0.0)</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.rotateAxisCenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct 4x4 rotation matrix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.rotateX">
+<tt class="descname">rotateX</tt><big>(</big><em>self</em>, <em>double x</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.rotateX" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.rotateY">
+<tt class="descname">rotateY</tt><big>(</big><em>self</em>, <em>double y</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.rotateY" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.rotateZ">
+<tt class="descname">rotateZ</tt><big>(</big><em>self</em>, <em>double z</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.rotateZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.scale">
+<tt class="descname">scale</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Transform.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.set">
+<tt class="descname">set</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Transform.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept 16 arguments setting all values.
+Sequence of sequence of size 3x3 setting all values.</p>
+<blockquote>
+<div>m11 m12 m13 m14</div></blockquote>
+<dl class="docutils">
+<dt>Matrix =      m21 m22 m23 m24</dt>
+<dd>m31 m32 m33 m34
+m41 m42 m43 m44</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.translate">
+<tt class="descname">translate</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Transform.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept both multiple argument
+and sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.transpose">
+<tt class="descname">transpose</tt><big>(</big><em>self</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose of matrix</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.worldToCamera">
+<tt class="descname">worldToCamera</tt><big>(</big><em>self</em>, <em>Camera cam</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.worldToCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Transform.zero">
+<tt class="descname">zero</tt><big>(</big><em>self</em><big>)</big> &rarr; Transform<a class="headerlink" href="#geotools.Transform.zero" title="Permalink to this definition">¶</a></dt>
+<dd><p>set all values to zero</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__abs__">
+<tt class="descname">__abs__</tt><a class="headerlink" href="#geotools.Transform.__abs__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return absolute value of matrix: abs(m)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__add__">
+<tt class="descname">__add__</tt><a class="headerlink" href="#geotools.Transform.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix addition
+They must be of same shape.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__div__">
+<tt class="descname">__div__</tt><a class="headerlink" href="#geotools.Transform.__div__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix division
+We accept only division by a scalar.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__getitem__">
+<tt class="descname">__getitem__</tt><a class="headerlink" href="#geotools.Transform.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return rows as a tuple object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__iadd__">
+<tt class="descname">__iadd__</tt><a class="headerlink" href="#geotools.Transform.__iadd__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Matrix addition ( m1 += m2)
+They must be of same shape.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__idiv__">
+<tt class="descname">__idiv__</tt><a class="headerlink" href="#geotools.Transform.__idiv__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Matrix division (v1 <a href="#id9"><span class="problematic" id="id10">*</span></a>= v2)
+We accept only division by a scalar.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__imul__">
+<tt class="descname">__imul__</tt><a class="headerlink" href="#geotools.Transform.__imul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix multiplication
+We accept both multiplication by a scalar and
+a other matrix. This is the matrix
+multiplication known from linear algebra.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__init__">
+<tt class="descname">__init__</tt><a class="headerlink" href="#geotools.Transform.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>We accept 16 arguments setting all values.
+Sequence of sequence of size 3x3 setting all values.</p>
+<blockquote>
+<div>m11 m12 m13 m14</div></blockquote>
+<dl class="docutils">
+<dt>Matrix =      m21 m22 m23 m24</dt>
+<dd>m31 m32 m33 m34
+m41 m42 m43 m44</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__isub__">
+<tt class="descname">__isub__</tt><a class="headerlink" href="#geotools.Transform.__isub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inline Matrix subtraction ( m1 -= m2)
+They must be of same shape.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__len__">
+<tt class="descname">__len__</tt><a class="headerlink" href="#geotools.Transform.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><p>We have 4 rows</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__mul__">
+<tt class="descname">__mul__</tt><a class="headerlink" href="#geotools.Transform.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix multiplication
+We accept both multiplication by a scalar and
+a other matrix. This is the matrix
+multiplication known from linear algebra. See the
+Matrix.dot function for this.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__neg__">
+<tt class="descname">__neg__</tt><a class="headerlink" href="#geotools.Transform.__neg__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return negated value of matrix: -v</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__pos__">
+<tt class="descname">__pos__</tt><a class="headerlink" href="#geotools.Transform.__pos__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return positive value of matrix: +v</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__radd__">
+<tt class="descname">__radd__</tt><a class="headerlink" href="#geotools.Transform.__radd__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__radd__(y) &lt;==&gt; y+x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__rdiv__">
+<tt class="descname">__rdiv__</tt><a class="headerlink" href="#geotools.Transform.__rdiv__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rdiv__(y) &lt;==&gt; y/x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__repr__">
+<tt class="descname">__repr__</tt><a class="headerlink" href="#geotools.Transform.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a matrix.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__rmul__">
+<tt class="descname">__rmul__</tt><a class="headerlink" href="#geotools.Transform.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rmul__(y) &lt;==&gt; y*x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__rsub__">
+<tt class="descname">__rsub__</tt><a class="headerlink" href="#geotools.Transform.__rsub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__rsub__(y) &lt;==&gt; y-x</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__str__">
+<tt class="descname">__str__</tt><a class="headerlink" href="#geotools.Transform.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string representation of a matrix.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Transform.__sub__">
+<tt class="descname">__sub__</tt><a class="headerlink" href="#geotools.Transform.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix subtraction
+They must be of same shape.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="vector">
+<h2>Vector<a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.Vector">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">Vector</tt><a class="headerlink" href="#geotools.Vector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="geotools.Vector.distanceTo">
+<tt class="descname">distanceTo</tt><big>(</big><em>self</em>, <em>Point arg</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Vector.distanceTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute distance between 2 points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Vector.isZero">
+<tt class="descname">isZero</tt><big>(</big><em>self</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.Vector.isZero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if arg is all zeros.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Vector.maximumCoordinate">
+<tt class="descname">maximumCoordinate</tt><big>(</big><em>self</em><big>)</big> &rarr; double<a class="headerlink" href="#geotools.Vector.maximumCoordinate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Vector.maximumCoordinateIndex">
+<tt class="descname">maximumCoordinateIndex</tt><big>(</big><em>self</em><big>)</big> &rarr; int<a class="headerlink" href="#geotools.Vector.maximumCoordinateIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Vector.set">
+<tt class="descname">set</tt><big>(</big><em>self</em>, <em>*args</em><big>)</big><a class="headerlink" href="#geotools.Vector.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set one or more coordinates.
+accept both multiple argument and
+sequence like arguments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Vector.unit">
+<tt class="descname">unit</tt><big>(</big><em>self</em><big>)</big> &rarr; Vector<a class="headerlink" href="#geotools.Vector.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the vector (arg.lenght = 1.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Vector.length">
+<tt class="descname">length</tt><a class="headerlink" href="#geotools.Vector.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate lenght of vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Vector.lengthSquared">
+<tt class="descname">lengthSquared</tt><a class="headerlink" href="#geotools.Vector.lengthSquared" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate squared lenght of vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Vector.x">
+<tt class="descname">x</tt><a class="headerlink" href="#geotools.Vector.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Vector.y">
+<tt class="descname">y</tt><a class="headerlink" href="#geotools.Vector.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Vector.z">
+<tt class="descname">z</tt><a class="headerlink" href="#geotools.Vector.z" title="Permalink to this definition">¶</a></dt>
+<dd><p>z: &#8216;double&#8217;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Geometry Tools</a><ul>
+<li><a class="reference internal" href="#aabbox">AABBox</a></li>
+<li><a class="reference internal" href="#plane">Plane</a></li>
+<li><a class="reference internal" href="#point">Point</a></li>
+<li><a class="reference internal" href="#quaternion">Quaternion</a></li>
+<li><a class="reference internal" href="#transform">Transform</a></li>
+<li><a class="reference internal" href="#vector">Vector</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">geotools documentation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/content.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="geotools documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">geotools  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Runar Tenfjord.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
