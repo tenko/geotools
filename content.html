@@ -227,6 +227,226 @@ the arguments.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="camera">
+<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="geotools.Camera">
+<em class="property">class </em><tt class="descclassname">geotools.</tt><tt class="descname">Camera</tt><a class="headerlink" href="#geotools.Camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Camera(projection=PARALLEL)</p>
+<p>Modify the Loc, Dir &amp; Up variables and then call <em>updateCameraFrame</em>
+to set the up the camera frame vectors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Projection :</th><td class="field-body">PARALLEL or PROJECTED projection type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Loc :</th><td class="field-body">camera location</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Dir :</th><td class="field-body">from camera towards view (nonzero and not parallel to up)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Up :</th><td class="field-body">(nonzero and not parallel to m_CamDir)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">X :</th><td class="field-body">camera frame X vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Y :</th><td class="field-body">camera frame Y vector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Z :</th><td class="field-body">camera frame Z vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Target :</th><td class="field-body">fixed point used in camera rotations and camera dolly operations.</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="geotools.Camera.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>S</em>, <em>...</em><big>)</big> &rarr; a new object with type S, a subtype of T<a class="headerlink" href="#geotools.Camera.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.getDollyCameraVector">
+<tt class="descname">getDollyCameraVector</tt><big>(</big><em>self</em>, <em>int x0</em>, <em>int y0</em>, <em>int x1</em>, <em>int y1</em>, <em>double distance_to_camera</em><big>)</big> &rarr; Vector<a class="headerlink" href="#geotools.Camera.getDollyCameraVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get camera dolly vector for the given screen coordinates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.rotateCamera">
+<tt class="descname">rotateCamera</tt><big>(</big><em>self</em>, <em>double angle</em>, <em>Vector axis</em>, <em>Point center=None</em><big>)</big><a class="headerlink" href="#geotools.Camera.rotateCamera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate camera and update frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.setCameraAngle">
+<tt class="descname">setCameraAngle</tt><big>(</big><em>self</em>, <em>double angle</em><big>)</big><a class="headerlink" href="#geotools.Camera.setCameraAngle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.setFrustumAspect">
+<tt class="descname">setFrustumAspect</tt><big>(</big><em>self</em>, <em>double frustum_aspect</em><big>)</big><a class="headerlink" href="#geotools.Camera.setFrustumAspect" title="Permalink to this definition">¶</a></dt>
+<dd><p>setFrustumAspect() changes the larger of the frustum&#8217;s widht/height
+so that the resulting value of width/height matches the requested
+aspect.  The camera angle is not changed.  If you change the shape
+of the view port with a call setViewportSize(), then you generally 
+want to call SetFrustumAspect().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.setFrustumNearFar">
+<tt class="descname">setFrustumNearFar</tt><big>(</big><em>self</em>, <em>double n</em>, <em>double f</em><big>)</big><a class="headerlink" href="#geotools.Camera.setFrustumNearFar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.setViewportSize">
+<tt class="descname">setViewportSize</tt><big>(</big><em>self</em>, <em>int width</em>, <em>int height</em><big>)</big><a class="headerlink" href="#geotools.Camera.setViewportSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location of viewport in pixels.
+These are provided so you can set the port you are using
+and get the appropriate transformations to and from
+screen space.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.updateCameraFrame">
+<tt class="descname">updateCameraFrame</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#geotools.Camera.updateCameraFrame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.zoomExtents">
+<tt class="descname">zoomExtents</tt><big>(</big><em>self</em>, <em>Point near</em>, <em>Point far</em>, <em>double angle=&lt;???&gt;</em><big>)</big><a class="headerlink" href="#geotools.Camera.zoomExtents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="geotools.Camera.zoomFactor">
+<tt class="descname">zoomFactor</tt><big>(</big><em>self</em>, <em>double magnification_factor</em>, <em>fixed_screen_point=None</em><big>)</big><a class="headerlink" href="#geotools.Camera.zoomFactor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.Dir">
+<tt class="descname">Dir</tt><a class="headerlink" href="#geotools.Camera.Dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dir: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.Loc">
+<tt class="descname">Loc</tt><a class="headerlink" href="#geotools.Camera.Loc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loc: geotools.Point</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.Up">
+<tt class="descname">Up</tt><a class="headerlink" href="#geotools.Camera.Up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Up: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.X">
+<tt class="descname">X</tt><a class="headerlink" href="#geotools.Camera.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>X: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.Y">
+<tt class="descname">Y</tt><a class="headerlink" href="#geotools.Camera.Y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Y: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.Z">
+<tt class="descname">Z</tt><a class="headerlink" href="#geotools.Camera.Z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Z: geotools.Vector</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.__init__">
+<tt class="descname">__init__</tt><a class="headerlink" href="#geotools.Camera.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.fvBottom">
+<tt class="descname">fvBottom</tt><a class="headerlink" href="#geotools.Camera.fvBottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>fvBottom: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.fvFar">
+<tt class="descname">fvFar</tt><a class="headerlink" href="#geotools.Camera.fvFar" title="Permalink to this definition">¶</a></dt>
+<dd><p>fvFar: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.fvLeft">
+<tt class="descname">fvLeft</tt><a class="headerlink" href="#geotools.Camera.fvLeft" title="Permalink to this definition">¶</a></dt>
+<dd><p>fvLeft: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.fvNear">
+<tt class="descname">fvNear</tt><a class="headerlink" href="#geotools.Camera.fvNear" title="Permalink to this definition">¶</a></dt>
+<dd><p>fvNear: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.fvRight">
+<tt class="descname">fvRight</tt><a class="headerlink" href="#geotools.Camera.fvRight" title="Permalink to this definition">¶</a></dt>
+<dd><p>fvRight: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.fvTop">
+<tt class="descname">fvTop</tt><a class="headerlink" href="#geotools.Camera.fvTop" title="Permalink to this definition">¶</a></dt>
+<dd><p>fvTop: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.projection">
+<tt class="descname">projection</tt><a class="headerlink" href="#geotools.Camera.projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>projection: &#8216;int&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.scrBottom">
+<tt class="descname">scrBottom</tt><a class="headerlink" href="#geotools.Camera.scrBottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>scrBottom: &#8216;int&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.scrFar">
+<tt class="descname">scrFar</tt><a class="headerlink" href="#geotools.Camera.scrFar" title="Permalink to this definition">¶</a></dt>
+<dd><p>scrFar: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.scrLeft">
+<tt class="descname">scrLeft</tt><a class="headerlink" href="#geotools.Camera.scrLeft" title="Permalink to this definition">¶</a></dt>
+<dd><p>scrLeft: &#8216;int&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.scrNear">
+<tt class="descname">scrNear</tt><a class="headerlink" href="#geotools.Camera.scrNear" title="Permalink to this definition">¶</a></dt>
+<dd><p>scrNear: &#8216;double&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.scrRight">
+<tt class="descname">scrRight</tt><a class="headerlink" href="#geotools.Camera.scrRight" title="Permalink to this definition">¶</a></dt>
+<dd><p>scrRight: &#8216;int&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.scrTop">
+<tt class="descname">scrTop</tt><a class="headerlink" href="#geotools.Camera.scrTop" title="Permalink to this definition">¶</a></dt>
+<dd><p>scrTop: &#8216;int&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="geotools.Camera.target">
+<tt class="descname">target</tt><a class="headerlink" href="#geotools.Camera.target" title="Permalink to this definition">¶</a></dt>
+<dd><p>target: geotools.Point</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="plane">
 <h2>Plane<a class="headerlink" href="#plane" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -1061,6 +1281,7 @@ sequence like arguments.</p>
   <ul>
 <li><a class="reference internal" href="#">Geometry Tools</a><ul>
 <li><a class="reference internal" href="#aabbox">AABBox</a></li>
+<li><a class="reference internal" href="#camera">Camera</a></li>
 <li><a class="reference internal" href="#plane">Plane</a></li>
 <li><a class="reference internal" href="#point">Point</a></li>
 <li><a class="reference internal" href="#quaternion">Quaternion</a></li>
