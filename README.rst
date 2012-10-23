@@ -25,4 +25,4 @@ Documentation
 
 See online Sphinx docs_
 
-.. _docs: http://tenko.github.com/occmodel/index.html
+.. _docs: http://tenko.github.com/geotools/index.html

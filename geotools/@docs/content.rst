@@ -19,6 +19,11 @@ AABBox
     :members:
     :special-members:
 
+Camera
+------
+.. autoclass:: geotools.Camera
+    :members:
+    :special-members:
 
 Plane
 -----
@@ -31,11 +36,6 @@ Point
 .. autoclass:: geotools.Point
     :members:
     :special-members:
-
-Mesh
-----
-.. autoclass:: geotools.Mesh
-    :members:
 
 
 Quaternion
