@@ -1032,18 +1032,18 @@ cdef class Transform:
         self.m[0][0] = cam.X.x
         self.m[0][1] = cam.X.y
         self.m[0][2] = cam.X.z
-        self.m[0][3] = -(cam.X.x*cam.Loc.x + cam.X.y*cam.Loc.y + \
-                         cam.X.z*cam.Loc.z)
+        self.m[0][3] = -(cam.X.x*cam.loc.x + cam.X.y*cam.loc.y + \
+                         cam.X.z*cam.loc.z)
         self.m[1][0] = cam.Y.x
         self.m[1][1] = cam.Y.y
         self.m[1][2] = cam.Y.z
-        self.m[1][3] = -(cam.Y.x*cam.Loc.x + cam.Y.y*cam.Loc.y + \
-                         cam.Y.z*cam.Loc.z)
+        self.m[1][3] = -(cam.Y.x*cam.loc.x + cam.Y.y*cam.loc.y + \
+                         cam.Y.z*cam.loc.z)
         self.m[2][0] = cam.Z.x
         self.m[2][1] = cam.Z.y
         self.m[2][2] = cam.Z.z
-        self.m[2][3] = -(cam.Z.x*cam.Loc.x + cam.Z.y*cam.Loc.y + \
-                         cam.Z.z*cam.Loc.z)
+        self.m[2][3] = -(cam.Z.x*cam.loc.x + cam.Z.y*cam.loc.y + \
+                         cam.Z.z*cam.loc.z)
         self.m[3][0] = self.m[3][1] = self.m[3][2] = 0.
         self.m[3][3] = 1.
         
@@ -1053,15 +1053,15 @@ cdef class Transform:
         self.m[0][0] = cam.X.x
         self.m[0][1] = cam.Y.x
         self.m[0][2] = cam.Z.x
-        self.m[0][3] = cam.Loc.x
+        self.m[0][3] = cam.loc.x
         self.m[1][0] = cam.X.y
         self.m[1][1] = cam.Y.y
         self.m[1][2] = cam.Z.y
-        self.m[1][3] = cam.Loc.y
+        self.m[1][3] = cam.loc.y
         self.m[2][0] = cam.X.z
         self.m[2][1] = cam.Y.z
         self.m[2][2] = cam.Z.z
-        self.m[2][3] = cam.Loc.z
+        self.m[2][3] = cam.loc.z
         self.m[3][0] = self.m[3][1] = self.m[3][2] = 0.
         self.m[3][3] = 1.
         

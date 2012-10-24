@@ -16,9 +16,9 @@ cdef class AABBox:
 cdef class Camera:
     cdef public int projection
     
-    cdef public Point Loc
-    cdef public Vector Dir
-    cdef public Vector Up
+    cdef public Point loc
+    cdef public Vector dir
+    cdef public Vector up
     cdef public Vector X
     cdef public Vector Y
     cdef public Vector Z
@@ -39,16 +39,25 @@ cdef class Camera:
     
     cdef public Point target
     
-    cpdef updateCameraFrame(self)
-    cpdef setCameraAngle(self, double angle)
+    cpdef updateFrame(self)
+    cpdef setAngle(self, double angle)
     cpdef setFrustumNearFar(self, double n, double f)
     cpdef setFrustumAspect(self, double frustum_aspect)
     cpdef setViewportSize(self, int width, int height)
-    cpdef Vector getDollyCameraVector(self, int x0, int y0, int x1, int y1,
-                                      double distance_to_camera)
-    cpdef rotateCamera(self, double angle, Vector axis, Point center = ?)
+    cpdef Vector getDollyVector(self, int x0, int y0, int x1, int y1,
+                                double distance_to_camera)
+    cpdef rotate(self, double angle, Vector axis, Point center = ?)
+    cpdef rotateDeltas(self, double dx, double dy, double speed = ?)
+    cpdef pan(self, int lastx, int lasty, int x, int y)
     cpdef zoomFactor(self, double magnification_factor, fixed_screen_point = ?)
     cpdef zoomExtents(self, Point near, Point far, double angle = ?)
+    cpdef setTopView(self)
+    cpdef setBottomView(self)
+    cpdef setLeftView(self)
+    cpdef setRightView(self)
+    cpdef setFrontView(self)
+    cpdef setBackView(self)
+    cpdef setIsoView(self)
 
 cdef class Point:
     cdef public double x, y, z

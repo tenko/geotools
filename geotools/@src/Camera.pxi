@@ -9,7 +9,7 @@ PARALLEL, PROJECTED = 1, 2
     
 cdef class Camera:
     '''
-    Modify the Loc, Dir & Up variables and then call *updateCameraFrame*
+    Modify the Loc, Dir & Up variables and then call *updateFrame*
     to set the up the camera frame vectors.
     
     :projection: PARALLEL or PROJECTED projection type
@@ -24,9 +24,9 @@ cdef class Camera:
     def __init__(self, projection = PARALLEL):
         self.projection = projection
         
-        self.Loc = Point(0.,0.,100.)
-        self.Dir = Vector(0., 0., -1.)
-        self.Up = Vector(0., 1., 0.)
+        self.loc = Point(0.,0.,1.)
+        self.dir = Vector(0., 0., -1.)
+        self.up = Vector(0., 1., 0.)
         self.X = Vector(1., 0., 0.)
         self.Y = Vector(0., 1., 0.)
         self.Z = Vector(0., 0., 1.)
@@ -36,7 +36,7 @@ cdef class Camera:
         self.fvBottom = -20.
         self.fvTop = 20.
         self.fvNear = MIN_NEAR_DIST
-        self.fvFar = 100.
+        self.fvFar = 100000.
         
         self.scrLeft = 0
         self.scrRight = 1000
@@ -47,13 +47,13 @@ cdef class Camera:
         
         self.target = Point(0.,0.,0.)
     
-    cpdef updateCameraFrame(self):
+    cpdef updateFrame(self):
         # Calculate camera frame
-        cdef Vector Z = -self.Dir
+        cdef Vector Z = -self.dir
         Z.unit()
         
-        cdef double d = dot(self.Up, Z)
-        cdef Vector Y = self.Up - d * Z
+        cdef double d = dot(self.up, Z)
+        cdef Vector Y = self.up - d * Z
         Y.unit()
         
         cdef Vector X = cross(Y, Z)
@@ -62,7 +62,7 @@ cdef class Camera:
         self.Y = Y
         self.Z = Z
     
-    cpdef setCameraAngle(self, double angle):
+    cpdef setAngle(self, double angle):
         cdef double d, aspect
         cdef double w, h, half_w, half_d
         
@@ -158,7 +158,7 @@ cdef class Camera:
         self.scrNear = 0
         self.scrFar = 0xff
     
-    cpdef Vector getDollyCameraVector(self, int x0, int y0, int x1, int y1,
+    cpdef Vector getDollyVector(self, int x0, int y0, int x1, int y1,
                                       double distance_to_camera):
         '''
         Get camera dolly vector for the given screen coordinates
@@ -178,21 +178,56 @@ cdef class Camera:
         
         return w0 - w1
         
-    cpdef rotateCamera(self, double angle, Vector axis, Point center = None):
+    cpdef rotate(self, double angle, Vector axis, Point center = None):
         '''
         Rotate camera and update frame.
         '''
         cdef Transform rot = Transform()
         
         if center is None:
-            center = self.Loc
+            center = self.loc
             
         rot.rotateAxisCenter(angle, axis, center)
         
-        self.Loc.set(rot.map(self.Loc))
-        self.Dir.set(rot.map(-self.Z))
-        self.Up.set(rot.map(self.Y))
-        self.updateCameraFrame()
+        self.loc.set(rot.map(self.loc))
+        self.dir.set(rot.map(-self.Z))
+        self.up.set(rot.map(self.Y))
+        self.updateFrame()
+    
+    cpdef rotateDeltas(self, double dx, double dy, double speed = 400):
+        '''
+        Rotate camera according to dx, dy
+        mouse motion.
+        '''
+        cdef Transform r1
+        cdef Transform r2
+        
+        # limit motion
+        cdef double sx = copysign(1., dx)
+        dx = sx*fmin(15., fabs(dx))
+        
+        cdef double sy = copysign(1., dy)
+        dy = sy*fmin(15., fabs(dy))
+        
+        r1 = Transform().rotateAxisCenter(dx/speed*M_PI, Zaxis, self.target)
+        r2 = Transform().rotateAxisCenter(dy/speed*M_PI, self.X, self.target)
+        cdef Transform rot = r1 * r2
+        
+        cdef double d = self.loc.distanceTo(self.target)
+        
+        self.up.set(rot.map(self.Y))
+        self.dir.set(rot.map(-self.Z))
+        self.loc.set(self.target - d*self.dir)
+        self.updateFrame()
+    
+    cpdef pan(self, int lastx, int lasty, int x, int y):
+        '''
+        Pan camera due to mouse motion.
+        '''
+        cdef double d = dot(Vector(self.loc - self.target), self.Z)
+        cdef Vector dolly = self.getDollyVector(lastx,lasty,x,y,d)
+        self.loc += dolly
+        self.target += dolly
         
     cpdef zoomFactor(self, double magnification_factor, fixed_screen_point = None):
         cdef Point dpnt
@@ -219,11 +254,11 @@ cdef class Camera:
         
         if self.projection == PROJECTED:
             min_target_distance = 1.0e-6
-            target_distance = dot((self.Loc - self.target), self.Z)
+            target_distance = dot((self.loc - self.target), self.Z)
             if target_distance >= 0.:
                 delta = (1. - 1./magnification_factor)*target_distance
                 if target_distance-delta > min_target_distance:
-                    self.self.Loc -= Point(delta*self.Z)
+                    self.self.loc -= Point(delta*self.Z)
                     if not fixed_screen_point is None:
                         d = target_distance/self.fvNear;
                         w0 *= d;
@@ -249,7 +284,7 @@ cdef class Camera:
             
             dpnt = dx*self.X + dy*self.Y
             self.target -= dpnt
-            self.Loc -= dpnt
+            self.loc -= dpnt
             
     cpdef zoomExtents(self, Point near, Point far, double angle = 15.*M_PI/180.):
         cdef Vector vec = Vector(0.,0.,0.)
@@ -293,10 +328,53 @@ cdef class Camera:
             near_dist = MIN_NEAR_DIST
         
         far_dist = target_dist + 1.0625*radius
-        self.Loc = center + target_dist*self.Z
+        self.target = center
+        self.loc = center + target_dist*self.Z
         self.setFrustumNearFar(near_dist, far_dist)
         
-        self.setCameraAngle(angle)
+        self.setAngle(angle)
         
         # FIXME! - Use calculated distances!
-        self.fvNear, self.fvFar = 0.01, 10000.
+        self.fvNear, self.fvFar =  MIN_NEAR_DIST, 100000.
+    
+    cpdef setTopView(self):
+        self.loc = Point(0.,0.,100.)
+        self.dir = Vector(0., 0., -1.)
+        self.up = Vector(0., 1., 0.)
+        self.updateFrame()
+        
+    cpdef setBottomView(self):
+        self.loc = Point(0.,0.,-100.)
+        self.dir = Vector(0., 0., 1.)
+        self.up = Vector(0., -1., 0.)
+        self.updateFrame()
+    
+    cpdef setLeftView(self):
+        self.loc = Point(100.,0.,0.)
+        self.dir = Vector(-1., 0., 0.)
+        self.up = Vector(0., 0., -1.)
+        self.updateFrame()
+    
+    cpdef setRightView(self):
+        self.loc = Point(-100.,0.,0.)
+        self.dir = Vector(1., 0., 0.)
+        self.up = Vector(0., 0., -1.)
+        self.updateFrame()
+    
+    cpdef setFrontView(self):
+        self.loc = Point(0.,-100.,0.)
+        self.dir = Vector(0., 1., 0.)
+        self.up = Vector(0., 0., -1.)
+        self.updateFrame()
+    
+    cpdef setBackView(self):
+        self.loc = Point(0.,100.,0.)
+        self.dir = Vector(0., -1., 0.)
+        self.up = Vector(0., 0., -1.)
+        self.updateFrame()
+    
+    cpdef setIsoView(self):
+        self.loc = Point(-57.7,-57.7,57.7)
+        self.dir = Vector(.577,.577,-.577)
+        self.up = Vector(0., 0., -1.)
+        self.updateFrame()

@@ -166,6 +166,6 @@ cpdef Vector perpendicular(Vector v):
     ret.set(vals)
     return ret
     
-X = Vector(1.,0.,0.)
-Y = Vector(0.,1.,0.)
-Z = Vector(0.,0.,1.)
+Xaxis = Vector(1.,0.,0.)
+Yaxis = Vector(0.,1.,0.)
+Zaxis = Vector(0.,0.,1.)
