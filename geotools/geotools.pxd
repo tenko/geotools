@@ -47,8 +47,8 @@ cdef class Camera:
     cpdef Vector getDollyVector(self, int x0, int y0, int x1, int y1,
                                 double distance_to_camera)
     cpdef rotate(self, double angle, Vector axis, Point center = ?)
-    cpdef rotateDeltas(self, double dx, double dy, double speed = ?)
-    cpdef pan(self, int lastx, int lasty, int x, int y)
+    cpdef rotateDeltas(self, double dx, double dy, double speed = ?, Point target = ?)
+    cpdef pan(self, int lastx, int lasty, int x, int y, Point target = ?)
     cpdef zoomFactor(self, double magnification_factor, fixed_screen_point = ?)
     cpdef zoomExtents(self, Point near, Point far, double angle = ?)
     cpdef setTopView(self)

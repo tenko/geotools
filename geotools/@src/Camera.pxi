@@ -9,13 +9,13 @@ PARALLEL, PROJECTED = 1, 2
     
 cdef class Camera:
     '''
-    Modify the Loc, Dir & Up variables and then call *updateFrame*
+    Modify the loc, dir & up variables and then call *updateFrame*
     to set the up the camera frame vectors.
     
     :projection: PARALLEL or PROJECTED projection type
-    :Loc: camera location
-    :Dir: from camera towards view (nonzero and not parallel to up)
-    :Up: (nonzero and not parallel to m_CamDir)
+    :loc: camera location
+    :dir: from camera towards view (nonzero and not parallel to up)
+    :up: (nonzero and not parallel to dir)
     :X: camera frame X vector
     :Y: camera frame Y vector
     :Z: camera frame Z vector
@@ -185,7 +185,7 @@ cdef class Camera:
         cdef Transform rot = Transform()
         
         if center is None:
-            center = self.loc
+            center = self.target
             
         rot.rotateAxisCenter(angle, axis, center)
         
@@ -194,7 +194,7 @@ cdef class Camera:
         self.up.set(rot.map(self.Y))
         self.updateFrame()
     
-    cpdef rotateDeltas(self, double dx, double dy, double speed = 400):
+    cpdef rotateDeltas(self, double dx, double dy, double speed = 400, Point target = None):
         '''
         Rotate camera according to dx, dy
         mouse motion.
@@ -202,6 +202,9 @@ cdef class Camera:
         cdef Transform r1
         cdef Transform r2
         
+        if target is None:
+            target = self.target
+            
         # limit motion
         cdef double sx = copysign(1., dx)
         dx = sx*fmin(15., fabs(dx))
@@ -209,23 +212,27 @@ cdef class Camera:
         cdef double sy = copysign(1., dy)
         dy = sy*fmin(15., fabs(dy))
         
-        r1 = Transform().rotateAxisCenter(dx/speed*M_PI, Zaxis, self.target)
-        r2 = Transform().rotateAxisCenter(dy/speed*M_PI, self.X, self.target)
+        r1 = Transform().rotateAxisCenter(dx/speed*M_PI, Zaxis, target)
+        r2 = Transform().rotateAxisCenter(dy/speed*M_PI, self.X, target)
         cdef Transform rot = r1 * r2
         
-        cdef double d = self.loc.distanceTo(self.target)
+        cdef double d = self.loc.distanceTo(target)
         
         self.up.set(rot.map(self.Y))
         self.dir.set(rot.map(-self.Z))
-        self.loc.set(self.target - d*self.dir)
+        self.loc.set(target - d*self.dir)
         self.updateFrame()
     
-    cpdef pan(self, int lastx, int lasty, int x, int y):
+    cpdef pan(self, int lastx, int lasty, int x, int y, Point target = None):
         '''
         Pan camera due to mouse motion.
         '''
+        if target is None:
+            target = self.target
+        
         cdef double d = dot(Vector(self.loc - self.target), self.Z)
         cdef Vector dolly = self.getDollyVector(lastx,lasty,x,y,d)
+        
         self.loc += dolly
         self.target += dolly
         
