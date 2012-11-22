@@ -3,6 +3,16 @@
 # This file is part of geotools - See LICENSE.txt
 #
 
+cdef inline double fmax(double a, double b):
+    if a < b:
+        return b
+    return a
+
+cdef inline double fmin(double a, double b):
+    if a > b:
+        return b
+    return a
+    
 cdef inline double fmax3(double a, double b, double c):
     if a < b:
         if b < c: return c

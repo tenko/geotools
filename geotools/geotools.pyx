@@ -3,10 +3,9 @@
 #
 # This file is part of geotools - See LICENSE.txt
 #
-from libc.stdint cimport uintptr_t
 from libc.stdlib cimport malloc, free
 
-from libc.math cimport fmin, fmax, fabs, copysign
+from libc.math cimport fabs, copysign
 from libc.math cimport M_PI, sqrt, sin, cos, tan
     
 cimport cpython.array
@@ -20,6 +19,7 @@ cdef double DEFAULT_ANGLE_TOLERANCE = M_PI/180.
 class GeoError(Exception):
     pass
 
+include "Config.pxi"
 include "AABBox.pxi"
 include "Camera.pxi"
 include "Plane.pxi"

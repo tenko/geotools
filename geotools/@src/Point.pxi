@@ -2,7 +2,7 @@
 #
 # This file is part of geotools - See LICENSE.txt
 #
-
+    
 cdef class Point:
     '''
     Class representing a 3D point in space

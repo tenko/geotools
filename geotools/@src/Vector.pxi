@@ -70,7 +70,7 @@ cdef class Vector(Point):
             self.y = d * self.y
             self.z = d * self.z
         return self
-
+    
 cpdef double dot(Vector a, Vector b):
     """Dot product"""
     assert a is not None and not b is None

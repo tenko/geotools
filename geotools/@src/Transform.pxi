@@ -537,7 +537,7 @@ cdef class Transform:
         else:
             raise TypeError("unsupported operand type for *")
         return self
-    
+
     def __div__(a, b):
         """Matrix division
         We accept only division by a scalar. 
@@ -607,7 +607,7 @@ cdef class Transform:
             return res
         else:
             raise TypeError("unsupported operand type for *")
-    
+
     def __idiv__(self, double s):
         """Inline Matrix division (v1 *= v2)
          We accept only division by a scalar.
