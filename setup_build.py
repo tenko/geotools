@@ -16,20 +16,20 @@ except ImportError:
     print >>sys.stderr, "Cython is required to build geotools"
     sys.exit(1)
 
+#sys.argv.append('build_ext')
+#sys.argv.extend(['sdist','--formats=gztar,zip'])
+#sys.argv.append('bdist_wininst')
+
 # create config file
 sys.dont_write_bytecode = True
 import version
 
 CONFIG = 'geotools/@src/Config.pxi'
-if not os.path.exists(CONFIG):
+if not os.path.exists(CONFIG) and 'sdist' not in sys.argv:
     with open(CONFIG, 'w') as fh:
         fh.write("__version__ = '%s'\n" % version.STRING)
         args = version.MAJOR, version.MINOR, version.BUILD
         fh.write("__version_info__ = (%d,%d,%d)\n" % args)
-
-#sys.argv.append('build_ext')
-#sys.argv.extend(['sdist','--formats=gztar,zip'])
-sys.argv.append('bdist_wininst')
 
 classifiers = '''\
 Development Status :: 5 - Production/Stable

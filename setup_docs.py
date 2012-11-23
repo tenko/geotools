@@ -11,7 +11,6 @@ from sphinx.setup_command import BuildDoc
 cmdclass = {'build_sphinx': BuildDoc}
 
 name = 'geotools'
-version = '0.1'
 release = '0.1.0'
 
 try:

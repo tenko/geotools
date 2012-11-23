@@ -25,6 +25,10 @@ tests: all
 install: all
 	@cp geotools.so ~/.local/lib/python$(PYVER)/site-packages/
 	@cp geotools/geotools.pxd ~/.local/lib/python$(PYVER)/site-packages/
+
+sdist: clean
+	@echo lib Makefile - creating source distribution
+	$(PYTHON) setup_build.py sdist --formats=gztar,zip
     
 clean:
 	-rm -rf build dist
