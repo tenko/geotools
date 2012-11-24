@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>geotools documentation &mdash; geotools  documentation</title>
+    <title>Overview &mdash; geotools  documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -47,12 +47,38 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="geotools-documentation">
-<h1>geotools documentation<a class="headerlink" href="#geotools-documentation" title="Permalink to this headline">¶</a></h1>
-<p><strong>Overview</strong></p>
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>geotools is a small collection of geometrical classes
 and functions accessable from both Python and Cython.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Point, Vector &amp; Planes</li>
+<li>Bounding box</li>
+<li>Transformations</li>
+<li>A camera class</li>
+</ul>
+</div></blockquote>
 <p>The license is GPL v2.</p>
+</div>
+<div class="section" id="building">
+<h1>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ul class="simple">
+<li>Python 2.7/3.x or later and Cython 0.17 or later.</li>
+</ul>
+</div></blockquote>
+<p>Note that currently I can not find a way to install the required
+Cython &#8216;pxd&#8217; files with distutils and this file has to be copied
+manually.</p>
+<p>Prebuild installers are available on the <a class="reference external" href="http://pypi.python.org/pypi/geotools">pypi</a> site
+for the Windows platform.</p>
+<p>For Linux build scripts are available for ArchLinux in the <a class="reference external" href="https://aur.archlinux.org/packages/?O=0&amp;K=geotools">AUR</a>
+repository. These could be adapted to other Linux distros.</p>
+<p>Note that currently to be able to build the module on
+Python 3.x the source must be patched. The &#8216;__div__&#8217;
+member must be renamed to &#8216;__truediv__&#8217; and similar
+for &#8216;__idiv__&#8217;.</p>
 </div>
 <div class="section" id="api-docs">
 <h1>API Docs<a class="headerlink" href="#api-docs" title="Permalink to this headline">¶</a></h1>
@@ -88,7 +114,8 @@ and functions accessable from both Python and Cython.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">geotools documentation</a></li>
+<li><a class="reference internal" href="#">Overview</a></li>
+<li><a class="reference internal" href="#building">Building</a></li>
 <li><a class="reference internal" href="#api-docs">API Docs</a><ul>
 </ul>
 </li>
