@@ -33,7 +33,6 @@ sdist: clean
 clean:
 	-rm -rf build dist
 	-rm -rf geotools/@docs/build
-	-rm -rf geotools/@docs/html
 	-rm geotools/@src/Config.pxi
 	-rm geotools*.so geotools/geotools.c MANIFEST 
 	-find geotools -iname '*.so' -exec rm {} \;

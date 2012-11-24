@@ -25,6 +25,9 @@ manually.
 Prebuild installers are available on the pypi_ site
 for the Windows platform.
 
+For Linux build scripts are available for ArchLinux in the AUR_
+repository. These could be adapted to other Linux distros.
+
 Note that currently to be able to build the module on
 Python 3.x the source must be patched. The '__div__'
 member must be renamed to '__truediv__' and similar
@@ -38,3 +41,5 @@ See online Sphinx docs_
 .. _docs: http://tenko.github.com/geotools/index.html
 
 .. _pypi: http://pypi.python.org/pypi/geotools
+
+.. _AUR: https://aur.archlinux.org/packages/?O=0&K=geotools
