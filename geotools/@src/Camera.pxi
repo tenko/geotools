@@ -219,7 +219,11 @@ cdef class Camera:
         cdef double d = self.loc.distanceTo(target)
         
         self.up.set(rot.map(self.Y))
+        self.up.unit()
+        
         self.dir.set(rot.map(-self.Z))
+        self.dir.unit()
+        
         self.loc.set(target - d*self.dir)
         self.updateFrame()
     
