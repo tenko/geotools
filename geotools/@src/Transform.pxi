@@ -115,6 +115,19 @@ cdef class Transform:
         """
         return '%s%s' % (self.__class__.__name__, repr(self))
     
+    def __setitem__(self, key, double value):
+        cdef int row, col
+        
+        try:
+            row, col = key
+        except TypeError:
+            raise TypeError('tuple (row, col) missing')
+        else:
+            if row > 3 or col > 3:
+                raise IndexError('index out of range')
+            else:
+                self.m[row][col] = value
+                
     def __getitem__(self, arg):
         """Return rows as a tuple object
         """
