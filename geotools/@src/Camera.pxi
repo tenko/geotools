@@ -182,16 +182,19 @@ cdef class Camera:
         '''
         Rotate camera and update frame.
         '''
-        cdef Transform rot = Transform()
-        
         if center is None:
             center = self.target
-            
-        rot.rotateAxisCenter(angle, axis, center)
         
-        self.loc.set(rot.map(self.loc))
-        self.dir.set(rot.map(-self.Z))
+        cdef double d = self.loc.distanceTo(center)
+        cdef Quaternion rot = Quaternion.fromAngleAxis(angle, axis)
+        
         self.up.set(rot.map(self.Y))
+        self.up.unit()
+        
+        self.dir.set(rot.map(-self.Z))
+        self.dir.unit()
+        
+        self.loc.set(center - d*self.dir)
         self.updateFrame()
     
     cpdef rotateDeltas(self, double dx, double dy, double speed = 400, Point target = None):
@@ -199,22 +202,12 @@ cdef class Camera:
         Rotate camera according to dx, dy
         mouse motion.
         '''
-        cdef Transform r1
-        cdef Transform r2
-        
         if target is None:
             target = self.target
-            
-        # limit motion
-        cdef double sx = copysign(1., dx)
-        dx = sx*fmin(15., fabs(dx))
         
-        cdef double sy = copysign(1., dy)
-        dy = sy*fmin(15., fabs(dy))
-        
-        r1 = Transform().rotateAxisCenter(dx/speed*M_PI, Zaxis, target)
-        r2 = Transform().rotateAxisCenter(dy/speed*M_PI, self.X, target)
-        cdef Transform rot = r1 * r2
+        cdef Quaternion q1 = Quaternion.fromAngleAxis(dx/speed*M_PI, Zaxis)
+        cdef Quaternion q2 = Quaternion.fromAngleAxis(dy/speed*M_PI, self.X)
+        cdef Quaternion rot = q1 * q2
         
         cdef double d = self.loc.distanceTo(target)
         
@@ -226,7 +219,7 @@ cdef class Camera:
         
         self.loc.set(target - d*self.dir)
         self.updateFrame()
-    
+        
     cpdef pan(self, int lastx, int lasty, int x, int y, Point target = None):
         '''
         Pan camera due to mouse motion.

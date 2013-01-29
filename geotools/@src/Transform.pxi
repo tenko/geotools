@@ -1008,15 +1008,36 @@ cdef class Transform:
         #cdef Point axis, center
         cdef double sin_angle, cos_angle, one_minus_cos_angle
         
+        self.identity()
+        
         sin_angle = sin(angle)
         cos_angle = cos(angle)
+        
+        if abs(sin_angle) >= 1. - SQRT_EPSILON and fabs(cos_angle) <= SQRT_EPSILON:
+            cos_angle = 0.
+            if sin_angle < 0.:
+                sin_angle = -1.
+            else:
+                sin_angle = 1.
+        elif abs(cos_angle) >= 1. - SQRT_EPSILON and fabs(sin_angle) <= SQRT_EPSILON:
+            sin_angle = 0.
+            if cos_angle < 0.:
+                cos_angle = -1.
+            else:
+                cos_angle = 1.
+        elif fabs(cos_angle*cos_angle + sin_angle*sin_angle - 1.0) > SQRT_EPSILON:
+            cs = Vector(cos_angle, sin_angle, 0.)
+            cs.unit()
+            cos_angle = cs.x
+            sin_angle = cs.y
+        
         one_minus_cos_angle = 1. - cos_angle
         
         center = Point(_center)
         axis = Vector(_axis)
         
-        if angle != 0.:
-            if abs(axis.lengthSquared - 1.) > EPSILON:
+        if sin_angle != 0. or cos_angle != 1.:
+            if fabs(axis.lengthSquared - 1.) > EPSILON:
                 axis.unit()
 
             self.m[0][0] = axis.x*axis.x*one_minus_cos_angle + cos_angle
