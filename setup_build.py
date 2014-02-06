@@ -72,7 +72,10 @@ and functions accessable from both Python and Cython.
                     include_dirs = ['geotools/@src',],
             ),
         ],
-      cmdclass = {'build_ext': build_ext},
+        cmdclass = {'build_ext': build_ext},
+        packages=[''],
+        package_dir={'': 'geotools'},
+        package_data={'': ['*.pxd']},
     )
 except:
     print('Traceback\n:%s\n' % str(sys.exc_info()[-2]))
