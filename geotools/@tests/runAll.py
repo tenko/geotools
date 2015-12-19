@@ -2,11 +2,11 @@
 #
 # This file is part of geotools - See LICENSE.txt
 #
-import sys
-from unittest import main
+import os
+import unittest
 
 if __name__ == '__main__':
-    sys.dont_write_bytecode = True
-    sys.argv.append('discover')
-    sys.argv.append('--verbose')
-    main(exit=False)
+    PATH = os.path.dirname(__file__)
+    test_loader = unittest.defaultTestLoader.discover(PATH)
+    test_runner = unittest.TextTestRunner(verbosity = 2)
+    test_runner.run(test_loader)

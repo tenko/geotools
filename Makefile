@@ -4,18 +4,19 @@
 # The variables 'PYTHON' and 'PYVER' can be modified by
 # passing parameters to make: make PYTHON=python PYVER=2.6
 #
-PYTHON=python2
-PYVER=2.7
+PYTHON=python3
+PYVER=3.5
 
 .PHONY: all docs test tests install clean
 
 all:
 	@echo lib Makefile - building python extension
-	$(PYTHON) setup_build.py build_ext --inplace
+	$(PYTHON) setup.py build_ext --inplace
 
 docs: all
 	@echo lib Makefile - building documentation
 	@cd geotools/@docs ; $(PYTHON) ../../setup_docs.py build_sphinx
+	@mkdir -p geotools/@docs/html
 	@cp -rf geotools/@docs/build/sphinx/html/* geotools/@docs/html/
     
 tests: all

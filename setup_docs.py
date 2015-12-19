@@ -24,7 +24,6 @@ try:
                'builder': ('setup_docs.py', 'html'),
             }
         },
-                   
     )
 except:
     print('Traceback\n:%s\n' % str(sys.exc_info()[-2]))
