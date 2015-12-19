@@ -186,6 +186,8 @@ cdef class Camera:
             center = self.target
         
         cdef double d = self.loc.distanceTo(center)
+        
+        axis.unit()
         cdef Quaternion rot = Quaternion.fromAngleAxis(angle, axis)
         
         self.up.set(rot.map(self.Y))
@@ -294,29 +296,10 @@ cdef class Camera:
         cdef Vector vec = Vector(0.,0.,0.)
         cdef Point center = .5*(near + far)
         cdef double target_dist, near_dist, far_dist
-        cdef double xmin, ymin, xmax, ymax
-        cdef double x, y, z, x0, y0, radius
+        cdef double radius
         
-        xmin = ymin = 1.e99
-        xmax = ymax = -1.e99
+        radius = .5*near.distanceTo(far)
         
-        for x in (near.x, far.x):
-            for y in (near.y, far.y):
-                for z in (near.z, far.z):
-                    vec.set(x, y, z)
-                    x0 = dot(self.X, vec)
-                    y0 = dot(self.Y, vec)
-                    
-                    xmin = min(xmin, x)
-                    ymin = min(ymin, y)
-                    xmax = max(xmax, x)
-                    ymax = max(ymax, y)
-                    
-        radius = xmax - xmin
-        if ymax - ymin > radius:
-            radius = ymax - ymin
-        
-        radius *= .5
         if radius <= SQRT_EPSILON:
             radius = 1.
         
@@ -337,9 +320,6 @@ cdef class Camera:
         self.setFrustumNearFar(near_dist, far_dist)
         
         self.setAngle(angle)
-        
-        # FIXME! - Use calculated distances!
-        self.fvNear, self.fvFar =  MIN_NEAR_DIST, 100000.
     
     cpdef setTopView(self):
         self.loc = Point(0.,0.,100.)
