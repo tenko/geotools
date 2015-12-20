@@ -246,8 +246,39 @@ cdef class Point:
             ret.z = lhs.z / s
         
         return ret
-
+    
+    def __truediv__(lhs, rhs):
+        """Point division by scalar.
+        """
+        cdef Point ret
+        cdef double s
+        
+        try:
+            s = lhs
+            cls = rhs.__class__
+            ret = cls.__new__(cls)
+            ret.x = s / rhs.x
+            ret.y = s / rhs.y
+            ret.z = s / rhs.z
+        except:
+            s = rhs
+            cls = lhs.__class__
+            ret = cls.__new__(cls)
+            ret.x = lhs.x / s
+            ret.y = lhs.y / s
+            ret.z = lhs.z / s
+        
+        return ret
+        
     def __idiv__(self, double rhs):
+        """Inline Point division by scalar. (p1 /= 2.)
+        """
+        self.x /= rhs
+        self.y /= rhs
+        self.z /= rhs
+        return self
+    
+    def __itruediv__(self, double rhs):
         """Inline Point division by scalar. (p1 /= 2.)
         """
         self.x /= rhs

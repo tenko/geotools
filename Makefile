@@ -7,11 +7,11 @@ PYVER=3.5
 PYPREFIX=/mingw64
 CC=gcc
 INCLUDES=-I$(NAME)/@src -I$(PYPREFIX)/include/python$(PYVER)m
-LIBS=-L@build -L$(PYPREFIX)/lib/python$(PYVERSION)
+LIBS=-L@build -L$(PYPREFIX)/lib/python$(PYVER)
 
 .PHONY: all docs test tests install clean
 
-all: $(NAME)/@build/$(NAME)-cpython-$(PYVER)m.dll
+all: $(NAME)/@build/$(NAME)-cpython-35m.dll
 
 $(NAME)/@build/$(NAME).c: $(NAME)/$(NAME).pyx $(NAME)/$(NAME).pxd $(NAME)/@src/*
 	cython $(NAME)/$(NAME).pyx -I$(NAME)/@src -o $(NAME)/@build/$(NAME).c
@@ -19,9 +19,9 @@ $(NAME)/@build/$(NAME).c: $(NAME)/$(NAME).pyx $(NAME)/$(NAME).pxd $(NAME)/@src/*
 $(NAME)/@build/$(NAME).o:	$(NAME)/@build/$(NAME).c
 	$(CC) -c $(INCLUDES) $(NAME)/@build/$(NAME).c -o $(NAME)/@build/$(NAME).o
 
-$(NAME)/@build/$(NAME)-cpython-$(PYVER)m.dll:	$(NAME)/@build/$(NAME).o
+$(NAME)/@build/$(NAME)-cpython-35m.dll:	$(NAME)/@build/$(NAME).o
 	$(CC) -shared $(NAME)/@build/$(NAME).o $(LIBS) -lpython$(PYVER)m -lm -o \
-	$(NAME)/@build/$(NAME)-cpython-$(PYVER)m.dll
+	$(NAME)/@build/$(NAME)-cpython-35m.dll
 
 test: all
 	@echo lib Makefile - running test suite
