@@ -1,31 +1,40 @@
 #
-# File:  Makefile (for library)
+# File:  Makefile for local builds
 #
-# The variables 'PYTHON' and 'PYVER' can be modified by
-# passing parameters to make: make PYTHON=python PYVER=2.6
-#
+NAME=geotools
 PYTHON=python3
 PYVER=3.5
+PYPREFIX=/mingw64
+CC=gcc
+INCLUDES=-I$(NAME)/@src -I$(PYPREFIX)/include/python$(PYVER)m
+LIBS=-L@build -L$(PYPREFIX)/lib/python$(PYVERSION)
 
 .PHONY: all docs test tests install clean
 
-all:
-	@echo lib Makefile - building python extension
-	$(PYTHON) setup.py build_ext --inplace
+all: $(NAME)/@build/$(NAME)-cpython-$(PYVER)m.dll
+
+$(NAME)/@build/$(NAME).c: $(NAME)/$(NAME).pyx $(NAME)/$(NAME).pxd $(NAME)/@src/*
+	cython $(NAME)/$(NAME).pyx -I$(NAME)/@src -o $(NAME)/@build/$(NAME).c
+
+$(NAME)/@build/$(NAME).o:	$(NAME)/@build/$(NAME).c
+	$(CC) -c $(INCLUDES) $(NAME)/@build/$(NAME).c -o $(NAME)/@build/$(NAME).o
+
+$(NAME)/@build/$(NAME)-cpython-$(PYVER)m.dll:	$(NAME)/@build/$(NAME).o
+	$(CC) -shared $(NAME)/@build/$(NAME).o $(LIBS) -lpython$(PYVER)m -lm -o \
+	$(NAME)/@build/$(NAME)-cpython-$(PYVER)m.dll
+
+test: all
+	@echo lib Makefile - running test suite
+	PYTHONPATH=$(NAME)/@build $(PYTHON) $(NAME)/@tests/runAll.py
 
 docs: all
 	@echo lib Makefile - building documentation
-	@cd geotools/@docs ; $(PYTHON) ../../setup_docs.py build_sphinx
-	@mkdir -p geotools/@docs/html
-	@cp -rf geotools/@docs/build/sphinx/html/* geotools/@docs/html/
-    
-tests: all
-	@echo lib Makefile - running test suite
-	@cd geotools/@tests ; $(PYTHON) runAll.py
+	@cd $(NAME)/@docs ; $(PYTHON) ../../setup_docs.py build_sphinx
+	@mkdir -p $(NAME)/@docs/html
+	@cp -rf $(NAME)/@docs/build/sphinx/html/* $(NAME)/@docs/html/
 
 install: all
-	@cp geotools.so ~/.local/lib/python$(PYVER)/site-packages/
-	@cp geotools/geotools.pxd ~/.local/lib/python$(PYVER)/site-packages/
+	@cp $(NAME)/@build/$(NAME).* ~/.local/lib/python$(PYVER)/site-packages/
 
 sdist: clean
 	@echo lib Makefile - creating source distribution
@@ -33,10 +42,6 @@ sdist: clean
     
 clean:
 	-rm -rf build dist
-	-rm -rf geotools/@docs/build
-	-rm geotools/@src/Config.pxi
-	-rm geotools*.so geotools/geotools.c MANIFEST 
-	-find geotools -iname '*.so' -exec rm {} \;
-	-find geotools -iname '*.pyc' -exec rm {} \;
-	-find geotools -iname '*.pyo' -exec rm {} \;
-	-find geotools -iname '*.pyd' -exec rm {} \;
+	-rm -rf $(NAME)/@docs/build
+	-rm -rf $(NAME)/@build/*
+	-rm MANIFEST 
